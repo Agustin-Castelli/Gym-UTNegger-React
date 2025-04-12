@@ -11,38 +11,43 @@ const Header = () => {
             <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">
               G
             </div>
-            <h1 className="text-2xl font-bold">POWER GYM</h1>
+            <h1 className="text-2xl font-bold">UTNegger</h1>
           </div>
         </div>
         
         {/* Barra de menú inferior */}
         <div className="bg-gray-800 px-[5%] py-2.5 flex justify-between">
           {/* Links de navegación */}
-          <ul className="flex gap-6 list-none">
-            <li>
-              <a href="#" className="text-white font-medium hover:text-orange-600 transition-colors duration-300">
-                Inicio
-              </a>
+          <ul className="flex gap-6 list-none items-center">
+            <li className="px-2">
+                <button className="bg-transparent border-hidden py-3 relative group text-white font-medium hover:text-orange-600 transition-colors duration-300">
+                    Inicio
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-orange-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </button>
             </li>
-            <li>
-              <a href="#" className="text-white font-medium hover:text-orange-600 transition-colors duration-300">
-                Clases
-              </a>
+            <li className="px-2">
+                <button className="bg-transparent border-hidden py-3 relative group text-white font-medium hover:text-orange-600 transition-colors duration-300">
+                    Turnos
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-orange-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </button>
             </li>
-            <li>
-              <a href="#" className="text-white font-medium hover:text-orange-600 transition-colors duration-300">
-                Entrenadores
-              </a>
+            <li className="px-2">
+                <button className="bg-transparent border-hidden py-3 relative group text-white font-medium hover:text-orange-600 transition-colors duration-300">
+                    Clases
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-orange-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </button>
             </li>
-            <li>
-              <a href="#" className="text-white font-medium hover:text-orange-600 transition-colors duration-300">
-                Precios
-              </a>
+            <li className="px-2">
+                <button className="bg-transparent border-hidden py-3 relative group text-white font-medium hover:text-orange-600 transition-colors duration-300">
+                    Sobre nosotros
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-orange-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </button>
             </li>
-            <li>
-              <a href="#" className="text-white font-medium hover:text-orange-600 transition-colors duration-300">
-                Contacto
-              </a>
+            <li className="px-2">
+            <button className="bg-transparent border-hidden py-3 relative group text-white font-medium hover:text-orange-600 transition-colors duration-300">
+                    Contacto
+                    <span className="absolute inset-x-0 bottom-0 h-1 bg-orange-600 scale-x-0 transition-transform duration-300 group-hover:scale-x-100" />
+                </button>
             </li>
           </ul>
           
