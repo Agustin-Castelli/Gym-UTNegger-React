@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import logo from "../../../public/logo-utnegger.jpg"
 const Header = () => {
+
+  const navigate = useNavigate()
+
+
+
     return (
       <nav className="w-full">
         {/* Parte superior con línea naranja */}
@@ -7,11 +14,12 @@ const Header = () => {
           <div className="h-1 w-full bg-orange-600 absolute top-0 left-0"></div>
           
           {/* Logo y nombre del gimnasio */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">
+          <div className="flex items-center gap-2.5 cursor-pointer" onClick={()=>{navigate("/")}}>
+            {/* <div className="w-10 h-10 bg-orange-600 rounded-full flex items-center justify-center text-white font-bold">
               G
-            </div>
-            <h1 className="text-2xl font-bold">UTNegger</h1>
+            </div> */}
+            <img src={logo} alt="" className="flex items-center gap-2.5 w-20 h-20"/>
+            <h1 className="logo text-2xl font-bold">UTNegger</h1>
           </div>
         </div>
         
@@ -52,7 +60,7 @@ const Header = () => {
           </ul>
           
           {/* Botón de Login */}
-          <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300">
+          <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={()=>{navigate("/login")}}>
             Login
           </button>
         </div>

@@ -80,12 +80,12 @@ const Login = () => {
                 <h2 className="h2-login">Iniciar sesión</h2>
                 <div className="div-de-divs-login">
                     <div className="div-interno-login">
-                        <h4 className="h4-login">Email</h4>
-                        <input className="input-login" ref={mailRef} value={mail} onChange={handlerChangeMail} type="text" placeholder="Ingrese su email aqui" />
+                        <label htmlFor="input-login-mail" className="label-login">Email</label>
+                        <input id="input-login-mail" className="input-login" ref={mailRef} value={mail} onChange={handlerChangeMail} type="text" placeholder="Ingrese su email aqui" />
                     </div>
                     <div className="div-interno-login">
-                        <h4 className="h4-login">Contraseña</h4>
-                        <input className="input-login" ref={passRef} value={pass} onChange={handlerChangePass} type="password" placeholder="**********" name="" id="" />
+                        <label htmlFor="input-login-pass" className="label-login">Contraseña</label>
+                        <input id="input-login-pass" className="input-login" ref={passRef} value={pass} onChange={handlerChangePass} type="password" placeholder="**********"  />
                     </div>
                 </div>
                 <button type="submit" className="button-login">Iniciar sesión</button>
