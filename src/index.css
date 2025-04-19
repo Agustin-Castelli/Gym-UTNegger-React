@@ -1,1 +1,8 @@
 @import "tailwindcss";
+@font-face{
+    font-family:"terminator";
+    src:url("../fonts/terminator.ttf")
+}
+.logo{
+    font-family:"terminator";
+}

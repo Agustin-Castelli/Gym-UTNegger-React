@@ -14,11 +14,13 @@ function App() {
         {
           path: "/",
           element: <Dashboard />,
+        },
+        {
+          path:"/login",
+          element:<Login/>,
+    
         }]},
-    {
-      path:"/login",
-      element:<Login/>
-    },
+
     {
       path:"/register",
       element:<p>register</p>

@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     font-family:Arial, Helvetica, sans-serif ;
+    margin: 40px;
 }
 
  .form-login{
@@ -36,10 +37,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    width: 50%;
     gap :5px;
 }
 
-.h4-login{
+.h2-login{
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.label-login{
     margin: 0;
 }
 .input-login{
@@ -47,9 +54,15 @@
     box-shadow: 0px 0px 5px black;
     border-style: solid;
     border-radius: 10px;
-    height: 20px;
+    height: 25px;
+    width: 100%;
     padding-left:10px;
+    transition: transform 1s;
     
+}
+.input-login:hover{
+    transform: scale(1.1);
+    transition: transform 1s;
 }
 
 .button-login{
@@ -60,6 +73,12 @@
     color:white;
     font-size: 18px;
     border: none;
+    transition: transform .5s;
+}
+
+.button-login:hover{
+    transition: transform 1s;
+    transform: scale(1.30);
 }
 
 .click-aqui-login{
