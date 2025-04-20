@@ -1,3 +1,4 @@
+import Frases from "../frases/Frases";
 import Video from "../video/Video";
 
 const Dashboard = () => {
@@ -29,7 +30,9 @@ const Dashboard = () => {
           </svg>
           Consúltanos
         </a>
+        
       </div>
+      
     </div>
   );
 };
