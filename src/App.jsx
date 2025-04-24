@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Dashboard from './components/dashboard/Dashboard'
 import Layout from './components/layout/layout';
 import Login from './components/login/Login'
+import Contact from './components/contact/Contact';
 
 
 function App() { 
@@ -19,7 +20,12 @@ function App() {
           path:"/login",
           element:<Login/>,
     
-        }]},
+        },
+      {
+        path:"/contact",
+        element:<Contact/>
+      }
+      ]},
 
     {
       path:"/register",

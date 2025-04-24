@@ -1,0 +1,109 @@
+.cont-contact{
+    margin: 100px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap :40px;
+    font-weight: bold;
+}
+
+.logo-contact{
+    cursor:pointer;
+    width: 150px;
+    height: 150px;
+}
+
+.div-textos-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 18px;
+}
+
+.div-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.div-div-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:40px;
+    width: 100%;
+}
+
+.div-div-contact div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    
+}
+
+.div-div-contact div input{
+    border: 1px solid gray;
+    background-color: gray;
+    padding-left: 20px;
+    border-radius: 20px;
+    width: 100%;
+    min-width: 100px;
+    max-width: 500px;
+}
+
+.div-div-contact div label{
+    font-size: 20px;
+
+}
+.div-textarea-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+.div-textarea-contact textarea{
+    border: 1px solid gray;
+    background-color: gray;
+    padding-left: 20px;
+    border-radius: 20px;
+    height: 200px;
+    width: 100%;
+    min-width: 100px;
+    max-width: 500px;
+}
+
+.button-contact{
+    width: 150px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #ff7700;
+    color:white;
+    font-size: 20px;
+    border: none;
+    transition: transform .5s;
+    cursor: pointer;
+}
+
+.button-contact:hover{
+    transition: transform 1s;
+    transform: scale(1.30);
+}
+
+@media (max-width: 768px) {
+
+    .div-div-contact{
+        flex-direction: column;
+        gap:20px;
+    }
+    
+}
