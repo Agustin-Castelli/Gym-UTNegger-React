@@ -25,3 +25,27 @@
 .div-frase-frases{
     flex-direction: column;
 }
+
+@media (max-width: 768px) {
+    .div-frases{
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 0;
+        height: 700px;
+
+    }
+
+    .div-frase-frases{
+        text-align: center;
+        height: 150px;
+
+    }
+
+    
+        
+    }
+    
+    
