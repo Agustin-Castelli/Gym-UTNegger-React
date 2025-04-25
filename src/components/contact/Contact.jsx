@@ -1,6 +1,65 @@
 import "./contact.css"
 import logo from "../../../public/logo-utnegger.jpg"
+import { useState } from "react"
+import { API_BASE_URL } from "../../api"
 const Contact = () => {
+
+    const [nameSubname, setNameSubname] = useState("")
+    const [address, setAddress] = useState("")
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [message, setMessage] = useState("")
+
+    const handlerNameSubnameChange = (e) => {
+        setNameSubname(e.target.value)
+    }
+    const handlerAddressChange = (e) => {
+        setAddress(e.target.value)
+    }
+    const handlerEmailChange = (e) => {
+        setEmail(e.target.value)
+    }
+    const handlerPhoneChange = (e) => {
+            setPhone(e.target.value)
+    }
+        
+
+        const handlerMessageChange = (e) => {
+            setMessage(e.target.value)
+        }
+
+        const handlerSendMessage = async () => {
+            console.log(nameSubname, address, email, phone, message)
+            try {
+                const response = await fetch(`${API_BASE_URL}/`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nameSubname,
+                        address,
+                        email,
+                        phone,
+                        message
+                    })
+                })
+
+                if (!response.ok)
+                    throw new Error("Error inesperado")
+
+                const data = await response.json()
+                console.log(data)
+            }
+
+            catch (e) {
+                console.error(e)
+                alert("Error al enviar el mensaje")
+            }
+
+        }
+    
+
     return (
         <div className="cont-contact">
             <div className="div-textos-contact">
@@ -13,25 +72,26 @@ const Contact = () => {
             <div className="div-contact">
                 <div className="div-div-contact">
                     <div>
-                        <div><label htmlFor="">Nombre y aplellido</label><input type="text" /></div>
-                        <div><label htmlFor="">Direccion</label><input type="text" /></div>
+                        <div><label htmlFor="">Nombre y aplellido</label><input type="text" value={nameSubname} onChange={handlerNameSubnameChange} /></div>
+                        <div><label htmlFor="">Direccion</label><input type="text" value={address} onChange={handlerAddressChange} /></div>
                     </div>
                     <div>
-                        <div><label htmlFor="">Correo</label><input type="text" /></div>
-                        <div><label htmlFor="">Telefono</label><input type="text" /></div>
+                        <div><label htmlFor="">Correo</label><input type="email" value={email} onChange={handlerEmailChange} /></div>
+                        <div><label htmlFor="">Telefono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
                     </div>
                 </div>
 
 
                 <div className="div-textarea-contact">
                     <label htmlFor="">Mensaje</label>
-                    <textarea></textarea>
+                    <textarea value={message} onChange={handlerMessageChange}></textarea>
                 </div>
 
-                <button className="button-contact" type="button">Enviar</button>
+                <button className="button-contact" onClick={handlerSendMessage} type="button">Enviar</button>
 
             </div>
         </div>
     )
 }
+
 export default Contact
