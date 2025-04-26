@@ -4,6 +4,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Layout from './components/layout/layout';
 import Login from './components/login/Login'
 import Contact from './components/contact/Contact';
+import ShiftsPage from "./components/shiftsPage/ShiftsPage"
 
 
 function App() { 
@@ -24,6 +25,10 @@ function App() {
       {
         path:"/contact",
         element:<Contact/>
+      },
+      {
+        path:"/shifts",
+        element:<ShiftsPage/>
       }
       ]},
 
@@ -35,6 +40,7 @@ function App() {
       path:"/",
       element:<p>dash</p>
     }
+    
 
   ])
 
