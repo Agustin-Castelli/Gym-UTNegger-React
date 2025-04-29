@@ -2,7 +2,7 @@ const Video = () => {
     return (
       <div className="w-full h-full brightness-50 overflow-hidden">
         <video
-          src="../../../public/video/9943158-uhd-3840-2160-24fps_sEOBgSzB.mp4"
+          src="../../../public/video-dashboard/gym.mp4"
           autoPlay
           loop
           muted
