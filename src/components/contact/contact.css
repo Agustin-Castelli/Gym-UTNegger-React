@@ -7,12 +7,35 @@
     flex-direction: column;
     gap :40px;
     font-weight: bold;
+    
+
+}
+
+.form-contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    width: 80%;
+    max-width: 1000px;
+    padding: 60px;
+    border-radius: 30px;
+    background-color: rgb(230, 221, 221);
+    box-shadow: 0px 0px 200px 10px black;
 }
 
 .logo-contact{
     cursor:pointer;
     width: 150px;
     height: 150px;
+    margin: 10px;
+    transition: transform 1s;
+}
+
+.logo-contact:hover{
+    transition: transform 1s;
+    transform: scale(1.30);
 }
 
 .div-textos-contact{
