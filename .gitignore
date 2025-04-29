@@ -23,8 +23,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Archivos multimedia grandes (añade esto)
-/public/video/
-*.mp4
-*.mov
