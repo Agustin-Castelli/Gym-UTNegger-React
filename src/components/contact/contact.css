@@ -74,7 +74,7 @@
 
 .div-div-contact div input{
     border: 1px solid gray;
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
     padding-left: 20px;
     border-radius: 20px;
     width: 100%;
@@ -96,7 +96,7 @@
 }
 .div-textarea-contact textarea{
     border: 1px solid gray;
-    background-color: gray;
+    background-color: rgb(255, 255, 255);
     padding-left: 20px;
     border-radius: 20px;
     height: 200px;
