@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import "./frases.css"
 import a from "../../../public/images-frases/coleman.jpg"
+import { useContext } from "react";
+import { modeContext } from "../../context/ModeContext";
 const Frases = () => {
 
 
     const [numFrase, setNumFrase] = useState(0);
+
+    const { mode } = useContext(modeContext);
 
     const listaFrases = [
         {
@@ -41,7 +45,7 @@ setInterval(() => {
 
 
     return (
-        <div className="div-frases">
+        <div className={`div-frases ${mode? "" : "light-frases"}`}>
             <div className="div-img-frases">
                 <img src={listaFrases[numFrase].img} alt="" />
             </div>

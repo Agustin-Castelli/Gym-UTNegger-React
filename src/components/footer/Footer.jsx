@@ -1,7 +1,9 @@
-
+import { useContext } from "react";
+import { modeContext } from "../../context/ModeContext";
 const Footer = () => {
+    const { mode } = useContext(modeContext);
     return (
-        <footer className="bg-white text-gray-900 px-6 py-10">
+        <footer className={`bg-${mode?"black":"gray-950"} text-${mode?"white":"gray-900"} px-6 py-10`}>
             <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
                 {/* Horarios */}
                 <div>
