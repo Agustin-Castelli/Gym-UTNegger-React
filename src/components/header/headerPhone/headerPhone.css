@@ -1,0 +1,27 @@
+
+
+
+ .nav-headerphone{
+    display: flex;
+    position: fixed;
+    justify-content: flex-start;
+    align-items: center;
+     flex-direction: column; 
+     padding-top: 50px;
+    width: 50vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.50);
+    right:0;
+    top: 0;
+    z-index: 10000;
+
+}
+
+
+
+.button-x{
+align-self: flex-end;
+margin-right: 20%;
+margin-bottom: 20px;
+
+    }
