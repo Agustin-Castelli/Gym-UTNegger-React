@@ -5,9 +5,10 @@ import Layout from './components/layout/layout';
 import Login from './components/login/Login'
 import Contact from './components/contact/Contact';
 import ShiftsPage from "./components/shiftsPage/ShiftsPage"
+import { ModeContextProvider } from './context/ModeContext';
 
 
-function App() { 
+function App() {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -18,33 +19,36 @@ function App() {
           element: <Dashboard />,
         },
         {
-          path:"/login",
-          element:<Login/>,
-    
+          path: "/login",
+          element: <Login />,
+
         },
-      {
-        path:"/contact",
-        element:<Contact/>
-      },
-      {
-        path:"/shifts",
-        element:<ShiftsPage/>
-      }
-      ]},
+        {
+          path: "/contact",
+          element: <Contact />
+        },
+        {
+          path: "/shifts",
+          element: <ShiftsPage />
+        }
+      ]
+    },
 
     {
-      path:"/register",
-      element:<p>register</p>
+      path: "/register",
+      element: <p>register</p>
     },
     {
-      path:"/",
-      element:<p>dash</p>
+      path: "/",
+      element: <p>dash</p>
     }
-    
+
 
   ])
 
-  return <RouterProvider router={router}/>
+  return <ModeContextProvider>
+              <RouterProvider router={router} />
+         </ModeContextProvider>
 }
 
 export default App

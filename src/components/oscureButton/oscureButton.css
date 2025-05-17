@@ -1,0 +1,23 @@
+.oscureButton{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 40px;
+    z-index: 1;
+}
+
+.moon{
+    color: darkblue;
+}
+
+.sun{
+    color: goldenrod;
+}
+
+@media (max-width: 768px) {
+    .oscureButton{
+        position:static;
+
+    }
+    
+}

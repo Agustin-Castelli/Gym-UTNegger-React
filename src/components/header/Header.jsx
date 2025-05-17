@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../../public/logo-utnegger.jpg"
+import { useContext } from "react";
+import { modeContext } from "../../context/ModeContext";
+import OscureButton from "../oscureButton/oscureButton";
 const Header = () => {
 
   const navigate = useNavigate()
 
-
+  const {mode} = useContext(modeContext)
 
     return (
       <nav className="w-full">
+        <OscureButton/>
         {/* Parte superior con línea naranja */}
-        <div className="bg-black text-white py-4 flex items-center justify-center relative">
+        <div className={`bg-${mode?"black":"white"} text-${mode?"white":"black"} py-4 flex items-center justify-center relative`}>
           {/* Línea naranja superior */}
           <div className="h-1 w-full bg-orange-600 absolute top-0 left-0"></div>
           
@@ -19,7 +23,7 @@ const Header = () => {
               G
             </div> */}
             <img src={logo} alt="" className="flex items-center gap-2.5 w-20 h-20"/>
-            <h1 className="logo text-2xl font-bold">UTNegger</h1>
+            <h1 className={`logo text-2xl font-bold`}>UTNegger</h1>
           </div>
         </div>
         
