@@ -64,21 +64,21 @@ const Contact = () => {
         <div className="cont-contact">
             <div className="form-contact">
                 <div className="div-textos-contact">
-                    <p>Podes escribirnos a nuestro numero de  WhatsApp haciendo click sobre el logo</p>
+                    <p>Podés escribirnos a nuestro número de WhatsApp haciendo click sobre el logo</p>
                     <img className="logo-contact" src={logoWSP} alt="logo" />
-                    <p>Caso contrario podes llamarnos al siguiente numero </p>
+                    <p>Caso contrario podés llamarnos al siguiente número </p>
                     <p>00000000000</p>
-                    <p>Tambien si queres hacer alguna consulta particular podes mandarnos un correo </p>
+                    <p>También si querés hacer alguna consulta particular podés mandarnos un correo </p>
                 </div>
                 <div className="div-contact">
                     <div className="div-div-contact">
                         <div>
-                            <div><label htmlFor="">Nombre y aplellido</label><input type="text" value={nameSubname} onChange={handlerNameSubnameChange} /></div>
-                            <div><label htmlFor="">Direccion</label><input type="text" value={address} onChange={handlerAddressChange} /></div>
+                            <div><label htmlFor="">Nombre y apellido</label><input type="text" value={nameSubname} onChange={handlerNameSubnameChange} /></div>
+                            <div><label htmlFor="">Dirección</label><input type="text" value={address} onChange={handlerAddressChange} /></div>
                         </div>
                         <div>
                             <div><label htmlFor="">Correo</label><input type="email" value={email} onChange={handlerEmailChange} /></div>
-                            <div><label htmlFor="">Telefono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
+                            <div><label htmlFor="">Teléfono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
                         </div>
                     </div>
 
@@ -88,7 +88,7 @@ const Contact = () => {
                         <textarea value={message} onChange={handlerMessageChange}></textarea>
                     </div>
 
-                    <button className="button-contact" onClick={handlerSendMessage} type="button">Enviar</button>
+                    <button className="button-contact" onClick={handlerSendMessage} type="button">Envíar</button>
 
                 </div>
             </div>
