@@ -6,6 +6,7 @@ import Login from './components/login/Login'
 import Contact from './components/contact/Contact';
 import ShiftsPage from "./components/shiftsPage/ShiftsPage"
 import { ModeContextProvider } from './context/ModeContext';
+import Protected from './components/protected/Protected';
 
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
         },
         {
           path: "/shifts",
-          element: <ShiftsPage />
+          element: <Protected><ShiftsPage /></Protected>
         }
       ]
     },
