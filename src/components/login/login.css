@@ -6,7 +6,12 @@
     justify-content: center;
     align-items: center;
     font-family:Arial, Helvetica, sans-serif ;
-    margin: 40px;
+    margin: 40px 0;
+
+}
+
+.div-login-dark{
+    background-color: black;
 }
 
  .form-login{
@@ -63,6 +68,11 @@
 .input-login:hover{
     transform: scale(1.1);
     transition: transform 1s;
+}
+
+.view-pass{
+    display: flex;
+    gap: 5px;
 }
 
 .button-login{

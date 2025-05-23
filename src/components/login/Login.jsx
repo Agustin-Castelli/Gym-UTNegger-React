@@ -2,7 +2,8 @@ import { useRef, useState } from "react"
 import "./login.css"
 import { API_BASE_URL } from "../../api"
 import { useNavigate } from "react-router-dom"
-
+import { useContext } from "react"
+import { modeContext } from "../../context/ModeContext"
 
 
 const Login = () => {
@@ -12,70 +13,73 @@ const Login = () => {
     const mailRef = useRef(null)
     const passRef = useRef(null)
 
-    const [mail,setMail]=useState("")
-    const [pass,setPass]=useState("")
+    const { mode } = useContext(modeContext)
 
-    const handlerChangeMail=(e)=>{
+    const [mail, setMail] = useState("")
+    const [pass, setPass] = useState("")
+    const [viewPass, setViewPass] = useState(false)
+
+    const handlerChangeMail = (e) => {
         setMail(e.target.value)
-        mailRef.current.style.borderColor = "white"
-        
+        mailRef.current.style.backgroundColor = "white"
+
     }
 
-    const handlerChangePass=(e)=>{
+    const handlerChangePass = (e) => {
         setPass(e.target.value)
-        passRef.current.style.borderColor = "white"
-        
+        passRef.current.style.backgroundColor = "white"
+
     }
 
-    const handlerRegister = ()=>{
+    const handlerRegister = () => {
         navigate("/register")
     }
 
-    const handlerSubmit= async (e)=>{
+    const handlerSubmit = async (e) => {
         e.preventDefault()
         let error = false
-        if(mail==""){
-            mailRef.current.style.borderColor = "red"
+        if (mail == "") {
+            mailRef.current.style.backgroundColor = "red"
             error = true
         }
 
-        if(pass==""){
-            passRef.current.style.borderColor = "red"
+        if (pass == "") {
+            passRef.current.style.backgroundColor = "red"
             error = true
         }
 
-        if(error)
+        if (error)
             return null;
 
 
         try {
-            const res = await fetch(`${API_BASE_URL}/url api`,
+            const res = await fetch(`${API_BASE_URL}/Authentication/authenticate`,
                 {
-                    method:"POST",
-                    headers:{
-                        "Content-type" : "application/json"
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
                     },
                     body: JSON.stringify({
-                        mail,
-                        pass
+                        email: mail,
+                        password: pass
                     })
                 }
             )
 
-            if(!res.ok)
+            if (!res.ok)
                 throw new Error("Error Inesperado")
-            
+
             const token = await res.text()
-            localStorage.setItem("token",token)
+            localStorage.setItem("tokenGYM", token)
             navigate("/")
-            
+
         } catch (error) {
             console.error(error)
         }
     }
 
     return (
-        <div className="div-login">
+        <div className={`div-login ${mode ? "div-login-dark" : ""}`}>
             <form className="form-login" onSubmit={handlerSubmit}>
                 <h2 className="h2-login">Iniciar sesión</h2>
                 <div className="div-de-divs-login">
@@ -85,7 +89,11 @@ const Login = () => {
                     </div>
                     <div className="div-interno-login">
                         <label htmlFor="input-login-pass" className="label-login">Contraseña</label>
-                        <input id="input-login-pass" className="input-login" ref={passRef} value={pass} onChange={handlerChangePass} type="password" placeholder="**********"  />
+                        <input id="input-login-pass" className="input-login" ref={passRef} value={pass} onChange={handlerChangePass} type={`${viewPass ? "text" : "password"}`} placeholder="**********" />
+                        <div className="view-pass">
+                            <input type="checkbox" id="view" value={viewPass} onChange={() => { setViewPass(!viewPass) }} className="checkbox-login" />
+                            <label htmlFor="view">Mostrar Contraseña</label>
+                        </div>
                     </div>
                 </div>
                 <button type="submit" className="button-login">Iniciar sesión</button>
