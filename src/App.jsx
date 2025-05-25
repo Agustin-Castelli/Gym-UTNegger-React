@@ -7,7 +7,7 @@ import Contact from './components/contact/Contact';
 import ShiftsPage from "./components/shiftsPage/ShiftsPage"
 import { ModeContextProvider } from './context/ModeContext';
 import Protected from './components/protected/Protected';
-
+import Register from './components/register/Register';
 
 function App() {
   const router = createBrowserRouter([
@@ -25,6 +25,10 @@ function App() {
 
         },
         {
+          path: "/register",
+          element: <Register />,
+        },
+        {
           path: "/contact",
           element: <Contact />
         },
@@ -36,10 +40,6 @@ function App() {
     },
 
     {
-      path: "/register",
-      element: <p>register</p>
-    },
-    {
       path: "/",
       element: <p>dash</p>
     }
@@ -48,8 +48,8 @@ function App() {
   ])
 
   return <ModeContextProvider>
-              <RouterProvider router={router} />
-         </ModeContextProvider>
+    <RouterProvider router={router} />
+  </ModeContextProvider>
 }
 
 export default App
