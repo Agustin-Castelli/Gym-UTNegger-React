@@ -4,7 +4,8 @@ import { API_BASE_URL } from "../../api"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { modeContext } from "../../context/ModeContext"
-
+import { userContext } from "../../context/UserContext"
+import {jwtDecode} from "jwt-decode"
 
 const Login = () => {
 
@@ -14,6 +15,7 @@ const Login = () => {
     const passRef = useRef(null)
 
     const { mode } = useContext(modeContext)
+    const { setUser } = useContext(userContext)
 
     const [mail, setMail] = useState("")
     const [pass, setPass] = useState("")
@@ -71,6 +73,8 @@ const Login = () => {
 
             const token = await res.text()
             localStorage.setItem("tokenGYM", token)
+            setUser(jwtDecode(token))
+            console.log(jwtDecode(token))
             navigate("/")
 
         } catch (error) {

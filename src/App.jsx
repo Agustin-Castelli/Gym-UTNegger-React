@@ -8,8 +8,11 @@ import ShiftsPage from "./components/shiftsPage/ShiftsPage"
 import { ModeContextProvider } from './context/ModeContext';
 import Protected from './components/protected/Protected';
 import Register from './components/register/Register';
+import { UserContextProvider } from './context/UserContext';
 
 function App() {
+
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -47,9 +50,9 @@ function App() {
 
   ])
 
-  return <ModeContextProvider>
+  return  <UserContextProvider> <ModeContextProvider>
     <RouterProvider router={router} />
-  </ModeContextProvider>
+  </ModeContextProvider> </UserContextProvider>
 }
 
 export default App
