@@ -30,7 +30,7 @@ const events = [
 
 export default function TurnosGym() {
 
-  const { user, setUser } = useContext(userContext);
+  const { user } = useContext(userContext);
   const [sessions, setSessions] = useState([]);
 
   console.log(user);
@@ -38,7 +38,7 @@ export default function TurnosGym() {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/GymSession`, {
+    fetch(`${API_BASE_URL}/GymSession/GetAllGymSessionsAvailable`, {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
@@ -60,7 +60,27 @@ export default function TurnosGym() {
       })
   }, [])
  console.log(sessions)
-  console.log(sessions.map(x=>Date(x.sessionDate)))
+  console.log(sessions.map(x=>x.sessionDate))
+
+  const reservar = async (id) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/ClientGymSession/RegisterToGymSession/${user.sub}/${id}` , {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`},
+        method:"POST"
+        }
+        )
+        if(!res.ok)
+          throw new Error("Ocurrio un error imprevisto")
+
+        const mensaje = await res.text()
+        alert(mensaje)
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -72,10 +92,10 @@ export default function TurnosGym() {
             localizer={localizer}
             events={sessions.map((x)=>(
               {
-                title:"aaa",
-                start:Date(x.sessionDate),
-                end:Date(x.sessionDate)
-              
+                title:x.routineName,
+                start:x.sessionDate,
+                end:x.sessionDate,
+                id:x.id
               }))}
             startAccessor="start"
             endAccessor="end"
@@ -99,7 +119,8 @@ export default function TurnosGym() {
                 <button
                   className="bg-green-500 hover:bg-green-600 rounded-md px-6"
                   onClick={() => {
-                    alert("¡Turno reservado!");
+                    reservar(selectedEvent.id)
+                  //  alert("¡Turno reservado!");
                     setSelectedEvent(null);
                   }}
                 >
