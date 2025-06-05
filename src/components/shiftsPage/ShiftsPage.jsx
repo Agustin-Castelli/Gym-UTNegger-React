@@ -1,27 +1,86 @@
 // TurnosGym.jsx
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import { API_BASE_URL } from "../../api";
+import { useContext } from "react";
+import { userContext } from "../../context/UserContext";
 
 
 const localizer = momentLocalizer(moment);
+
+
 
 const events = [
   {
     title: "Clase de Spinning",
     start: new Date(2025, 3, 26, 18, 0),
-    end: new Date(2025, 3, 26, 19, 0),
+    end: new Date(2025, 3, 27, 19, 0),
   },
   {
     title: "Entrenamiento Funcional",
-    start: new Date(2025, 3, 27, 17, 0),
-    end: new Date(2025, 3, 27, 18, 0),
+    start: new Date(2025, 4, 27, 17, 0),
+    end: new Date(2025, 4, 27, 18, 0),
   },
 ];
 
+
+
+
 export default function TurnosGym() {
+
+  const { user } = useContext(userContext);
+  const [sessions, setSessions] = useState([]);
+
+  console.log(user);
+
   const [selectedEvent, setSelectedEvent] = useState(null);
+
+  useEffect(() => {
+    fetch(`${API_BASE_URL}/GymSession/GetAllGymSessionsAvailable`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+      }
+    })
+      .then((res) => {
+        if (!res.ok)
+          throw new Error("Error inesperado")
+        return res.json()
+      })
+      .then((data) => {
+         setSessions(data)
+        console.log(data)
+
+      })
+      .catch((e) => {
+        alert(e)
+      })
+  }, [])
+ console.log(sessions)
+  console.log(sessions.map(x=>x.sessionDate))
+
+  const reservar = async (id) => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/ClientGymSession/RegisterToGymSession/${user.sub}/${id}` , {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`},
+        method:"POST"
+        }
+        )
+        if(!res.ok)
+          throw new Error("Ocurrio un error imprevisto")
+
+        const mensaje = await res.text()
+        alert(mensaje)
+    } catch (error) {
+      alert(error)
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -31,7 +90,13 @@ export default function TurnosGym() {
         <div className="bg-white p-4 rounded-xl shadow-md">
           <Calendar
             localizer={localizer}
-            events={events}
+            events={sessions.map((x)=>(
+              {
+                title:x.routineName,
+                start:x.sessionDate,
+                end:x.sessionDate,
+                id:x.id
+              }))}
             startAccessor="start"
             endAccessor="end"
             style={{ height: 500 }}
@@ -54,7 +119,8 @@ export default function TurnosGym() {
                 <button
                   className="bg-green-500 hover:bg-green-600 rounded-md px-6"
                   onClick={() => {
-                    alert("¡Turno reservado!");
+                    reservar(selectedEvent.id)
+                  //  alert("¡Turno reservado!");
                     setSelectedEvent(null);
                   }}
                 >

@@ -50,9 +50,16 @@ const Register = () => {
         setPhone(e.target.value);
         phoneRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
     }
+
+
+
     const handlerWeight = (e) => {
+        console.log(e.target.value.length);
+        if (e.target.value[e.target.value.length] == "-")  // This line seems incorrect, it should be a check for empty or invalid input
+            return;
         setWeight(e.target.value);
         weightRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
+        //console.log(weight);
     }
     const handlerHeight = (e) => {
         setHeight(e.target.value);
