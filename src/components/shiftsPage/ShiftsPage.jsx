@@ -71,14 +71,21 @@ export default function TurnosGym() {
           Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`},
         method:"POST"
         }
-        )
+      )
+      
+      
         if(!res.ok)
-          throw new Error("Ocurrio un error imprevisto")
-
+        {
+          const errorData = await res.text();
+          console.log(errorData.match(/: (.+?)\r?\n/))
+          throw new Error(errorData.match(/: (.+?)\r?\n/)[1])
+        }
         const mensaje = await res.text()
+        
         alert(mensaje)
+
     } catch (error) {
-      alert(error)
+      alert("Error: " + error.message)
     }
   }
 
