@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import Video from "../video/Video";
 
 const Dashboard = () => {
+
+  const navigate = useNavigate()
+
 
   const cards = [
     {
@@ -43,7 +47,10 @@ const Dashboard = () => {
         <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
           <h1 className="text-white text-6xl my-20 font-bold text-shadow">TRANSFORMA TU CUERPO HOY</h1>
           
-          <button className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-12 rounded-full text-2xl md:text-3xl mb-6 transform transition-transform duration-300 hover:scale-105 shadow-lg">
+          <button 
+            className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-4 px-12 rounded-full text-2xl md:text-3xl mb-6 transform transition-transform duration-300 hover:scale-105 shadow-lg"
+            onClick={() => {navigate("/login")}}
+          >
             Únete Ahora
           </button>
           
