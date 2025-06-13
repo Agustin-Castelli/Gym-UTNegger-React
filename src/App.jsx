@@ -10,6 +10,8 @@ import Protected from './components/protected/Protected';
 import Register from './components/register/Register';
 import { UserContextProvider } from './context/UserContext';
 import LoggedOnPage from './components/LoggedOnPage/LoggedOnPage';
+import ModifyPass from './components/login/changePass/modifyPass/ModifyPass';
+import FormMail from './components/login/changePass/formMail/FormMail';
 
 function App() {
 
@@ -39,11 +41,7 @@ function App() {
         {
           path: "/shifts",
           element: <Protected><ShiftsPage /></Protected>
-        },
-        {
-          path: "/loggedOn",
-          element: <Protected><LoggedOnPage /></Protected>
-        },
+        }
       ]
     },
 
