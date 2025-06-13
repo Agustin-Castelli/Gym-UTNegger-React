@@ -41,6 +41,18 @@ function App() {
         {
           path: "/shifts",
           element: <Protected><ShiftsPage /></Protected>
+        },
+        {
+          path: "/loggedOn",
+          element: <Protected><LoggedOnPage /></Protected>
+        },
+        {
+          path:"/FormMail",
+          element: <FormMail/>
+        },
+        {
+          path: "/modifyPass",
+          element: <ModifyPass/>
         }
       ]
     },
