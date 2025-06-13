@@ -3,9 +3,13 @@ import logo from "../../../public/logo-utnegger.jpg"
 import { useContext } from "react";
 import { modeContext } from "../../context/ModeContext";
 import OscureButton from "../oscureButton/oscureButton";
+import { userContext } from "../../context/UserContext";
+
 const Header = () => {
 
   const navigate = useNavigate()
+
+  const { user } = useContext(userContext);
 
   const {mode} = useContext(modeContext)
 
@@ -63,10 +67,33 @@ const Header = () => {
             </li>
           </ul>
           
-          {/* Botón de Login */}
-          <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={()=>{navigate("/login")}}>
+          {/* Botón condicional */}
+          {user ? (
+            <button 
+              className="flex items-center justify-end w-10 h-10 rounded-full bg-orange-600 text-white hover:w-32 hover:justify-start transition-all duration-300 overflow-hidden group"
+              onClick={() => navigate("/loggedOn")}
+            >
+              <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-2 pl-5">
+                Mi Perfil
+              </span>
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2" 
+                className="w-5 h-5 absolute mx-2.5 group-hover:relative group-hover:mr-0 group-hover:ml-2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+            </button>
+          ) : (
+            <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={()=>{navigate("/login")}}>
             Login
           </button>
+          )}
+
         </div>
       </nav>
     );

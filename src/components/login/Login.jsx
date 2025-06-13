@@ -75,7 +75,7 @@ const Login = () => {
             localStorage.setItem("tokenGYM", token)
             setUser(jwtDecode(token))
             console.log(jwtDecode(token))
-            navigate("/")
+            navigate("/loggedOn")
 
         } catch (error) {
             console.error(error)

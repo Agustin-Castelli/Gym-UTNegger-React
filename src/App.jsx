@@ -9,6 +9,7 @@ import { ModeContextProvider } from './context/ModeContext';
 import Protected from './components/protected/Protected';
 import Register from './components/register/Register';
 import { UserContextProvider } from './context/UserContext';
+import LoggedOnPage from './components/LoggedOnPage/LoggedOnPage';
 
 function App() {
 
@@ -38,7 +39,11 @@ function App() {
         {
           path: "/shifts",
           element: <Protected><ShiftsPage /></Protected>
-        }
+        },
+        {
+          path: "/loggedOn",
+          element: <Protected><LoggedOnPage /></Protected>
+        },
       ]
     },
 
