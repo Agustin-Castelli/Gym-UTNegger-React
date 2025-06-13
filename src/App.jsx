@@ -9,6 +9,8 @@ import { ModeContextProvider } from './context/ModeContext';
 import Protected from './components/protected/Protected';
 import Register from './components/register/Register';
 import { UserContextProvider } from './context/UserContext';
+import ModifyPass from './components/login/changePass/modifyPass/ModifyPass';
+import FormMail from './components/login/changePass/formMail/FormMail';
 
 function App() {
 
@@ -38,6 +40,14 @@ function App() {
         {
           path: "/shifts",
           element: <Protected><ShiftsPage /></Protected>
+        },
+        {
+          path:"/FormMail",
+          element: <FormMail/>
+        },
+        {
+          path: "/modifyPass",
+          element: <ModifyPass/>
         }
       ]
     },

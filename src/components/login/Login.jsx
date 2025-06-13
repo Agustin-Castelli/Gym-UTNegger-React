@@ -37,6 +37,10 @@ const Login = () => {
         navigate("/register")
     }
 
+        const handlerModifyPass = () => {
+        navigate("/FormMail")
+    }
+
     const handlerSubmit = async (e) => {
         e.preventDefault()
         let error = false
@@ -102,6 +106,7 @@ const Login = () => {
                 </div>
                 <button type="submit" className="button-login">Iniciar sesión</button>
                 <div className="div-p-login"><p>No tenés cuenta?</p> <p className="click-aqui-login" onClick={handlerRegister}>Hacé click aquí</p></div>
+                <div className="div-p-login"><p>Olvidaste tu contraseña?</p> <p className="click-aqui-login" onClick={handlerModifyPass}>Cambiar contraseña</p></div>
             </form>
         </div>
     )

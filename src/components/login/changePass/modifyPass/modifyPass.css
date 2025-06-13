@@ -1,0 +1,44 @@
+.container-modifyPass{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ff7700;
+}
+
+.light-modifyPass{
+    background-color: white;
+    color: black;
+}
+
+.container-modifyPass form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    gap: 10px;
+    width: 50%;
+    max-width: 300px;
+}
+
+.container-modifyPass div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.container-modifyPass input{
+    border: 3px solid;
+    border-radius:50px;
+    width: 100%;
+    padding: 5px;
+}   
+
+@media (max-width: 750px) {
+    .container-modifyPass form{
+        width: 100%;
+    }
+}
