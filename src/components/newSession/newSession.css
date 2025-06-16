@@ -1,0 +1,33 @@
+.conteiner-NewSession{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap :10px;
+}
+
+
+.newSession-calendar{
+width: 100%;
+background-color: white;
+}
+
+.div-selectRoutine-newSession{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid orangered;
+    color: orangered;
+    margin: 10px;
+    padding: 5px;
+}
+
+.div-selectRoutine-newSession-light{
+    color: black;
+    border-color: black;
+}
+
+.div-selectRoutine-newSession option{
+    color: black;
+}

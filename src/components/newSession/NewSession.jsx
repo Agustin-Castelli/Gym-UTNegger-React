@@ -6,8 +6,8 @@ import moment from "moment";
 import { userContext } from "../../context/userContext";
 import { useContext } from "react";
 import { jwtDecode } from "jwt-decode";
-
-
+import "./NewSession.css"
+import { modeContext } from "../../context/ModeContext";
 
 
 
@@ -24,6 +24,7 @@ const NewSession = () => {
     const selectRoutinesRef = useRef(null)
 
     const { user } = useContext(userContext)
+    const { mode } = useContext(modeContext)
 
     useEffect(() => {
         fetch(`${API_BASE_URL}/GymSession/GetAllGymSessionsAvailable`, {
@@ -109,9 +110,9 @@ const NewSession = () => {
     }
 
 
-    return <div>
+    return <div className="conteiner-NewSession">
         
-        <div>
+        <div className={`div-selectRoutine-newSession ${mode?"":"div-selectRoutine-newSession-light"}`}>
             <p>selecciona tu rutina</p>
             <select name="" id="" ref={selectRoutinesRef} onChange={()=>{
                     console.log(selectRoutinesRef.current.value)
@@ -122,7 +123,7 @@ const NewSession = () => {
             </select>
         </div>
         
-        <Calendar
+        <Calendar className="newSession-calendar"
         localizer={localizer}
         events={sessions.map((x) => (
             {
