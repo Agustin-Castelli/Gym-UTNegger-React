@@ -4,7 +4,7 @@ import { API_BASE_URL } from "../../api"
 import { useNavigate } from "react-router-dom"
 import { useContext } from "react"
 import { modeContext } from "../../context/ModeContext"
-import { userContext } from "../../context/UserContext"
+import { userContext } from "../../context/userContext"
 import {jwtDecode} from "jwt-decode"
 
 const Login = () => {

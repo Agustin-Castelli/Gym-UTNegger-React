@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { userContext } from "../../context/UserContext";
+import { userContext } from "../../context/userContext";
 import ShiftsDropdown from "./ShiftsDropDown";
 
 const LoggedOnPage = () => {

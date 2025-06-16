@@ -8,13 +8,16 @@ import ShiftsPage from "./components/shiftsPage/ShiftsPage"
 import { ModeContextProvider } from './context/ModeContext';
 import Protected from './components/protected/Protected';
 import Register from './components/register/Register';
-import { UserContextProvider } from './context/UserContext';
+import { UserContextProvider } from './context/userContext';
 import LoggedOnPage from './components/LoggedOnPage/LoggedOnPage';
 import ModifyPass from './components/login/changePass/modifyPass/ModifyPass';
 import FormMail from './components/login/changePass/formMail/FormMail';
+import ProtectedTrainer from './components/protected/protectedTrainer';
+import NewSession from './components/newSession/NewSession';
 
 function App() {
 
+  
 
   const router = createBrowserRouter([
     {
@@ -53,6 +56,10 @@ function App() {
         {
           path: "/modifyPass",
           element: <ModifyPass/>
+        },
+        {
+          path: "/NewSession",
+          element: <ProtectedTrainer><NewSession/></ProtectedTrainer>
         }
       ]
     },
