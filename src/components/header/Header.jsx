@@ -3,7 +3,7 @@ import logo from "../../../public/logo-utnegger.jpg"
 import { useContext } from "react";
 import { modeContext } from "../../context/ModeContext";
 import OscureButton from "../oscureButton/oscureButton";
-import { userContext } from "../../context/UserContext";
+import { userContext } from "../../context/userContext";
 
 const Header = () => {
 

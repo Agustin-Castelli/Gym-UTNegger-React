@@ -5,7 +5,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { API_BASE_URL } from "../../api";
 import { useContext } from "react";
-import { userContext } from "../../context/UserContext";
+import { userContext } from "../../context/userContext";
 
 
 const localizer = momentLocalizer(moment);
@@ -51,7 +51,7 @@ export default function TurnosGym() {
         return res.json()
       })
       .then((data) => {
-         setSessions(data)
+        setSessions(data)
         console.log(data)
 
       })
@@ -59,30 +59,30 @@ export default function TurnosGym() {
         alert(e)
       })
   }, [])
- console.log(sessions)
-  console.log(sessions.map(x=>x.sessionDate))
+  console.log(sessions)
+  console.log(sessions.map(x => x.sessionDate))
 
   const reservar = async (id) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/ClientGymSession/RegisterToGymSession/${user.sub}/${id}` , {
+      const res = await fetch(`${API_BASE_URL}/ClientGymSession/RegisterToGymSession/${user.sub}/${id}`, {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`},
-        method:"POST"
-        }
+          Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+        },
+        method: "POST"
+      }
       )
-      
-      
-        if(!res.ok)
-        {
-          const errorData = await res.text();
-          console.log(errorData.match(/: (.+?)\r?\n/))
-          throw new Error(errorData.match(/: (.+?)\r?\n/)[1])
-        }
-        const mensaje = await res.text()
-        
-        alert(mensaje)
+
+
+      if (!res.ok) {
+        const errorData = await res.text();
+        console.log(errorData.match(/: (.+?)\r?\n/))
+        throw new Error(errorData.match(/: (.+?)\r?\n/)[1])
+      }
+      const mensaje = await res.text()
+
+      alert(mensaje)
 
     } catch (error) {
       alert("Error: " + error.message)
@@ -97,12 +97,12 @@ export default function TurnosGym() {
         <div className="bg-white p-4 rounded-xl shadow-md">
           <Calendar
             localizer={localizer}
-            events={sessions.map((x)=>(
+            events={sessions.map((x) => (
               {
-                title:x.routineName,
-                start:x.sessionDate,
-                end:x.sessionDate,
-                id:x.id
+                title: x.routineName,
+                start: x.sessionDate,
+                end: x.sessionDate,
+                id: x.id
               }))}
             startAccessor="start"
             endAccessor="end"
@@ -127,7 +127,7 @@ export default function TurnosGym() {
                   className="bg-green-500 hover:bg-green-600 rounded-md px-6"
                   onClick={() => {
                     reservar(selectedEvent.id)
-                  //  alert("¡Turno reservado!");
+                    //  alert("¡Turno reservado!");
                     setSelectedEvent(null);
                   }}
                 >
