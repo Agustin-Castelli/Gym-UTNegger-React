@@ -2,6 +2,7 @@ import "./contact.css"
 import logoWSP from "../../../public/WhatsApp.svg.webp"
 import { useState } from "react"
 import { API_BASE_URL } from "../../api"
+import { Link } from "react-router-dom"
 const Contact = () => {
 
     const [nameSubname, setNameSubname] = useState("")
@@ -65,7 +66,7 @@ const Contact = () => {
             <div className="form-contact">
                 <div className="div-textos-contact">
                     <p>Podés escribirnos a nuestro número de WhatsApp haciendo click sobre el logo</p>
-                    <img className="logo-contact" src={logoWSP} alt="logo" />
+                    <a href="https://wa.me/3416489983"><img className="logo-contact" src={logoWSP}  alt="logo" /></a>
                     <p>Caso contrario podés llamarnos al siguiente número </p>
                     <p>00000000000</p>
                     <p>También si querés hacer alguna consulta particular podés mandarnos un correo </p>

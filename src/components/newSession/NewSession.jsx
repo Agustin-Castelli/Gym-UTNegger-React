@@ -19,7 +19,7 @@ const NewSession = () => {
     //const { user } = useContext(userContext);
     const [sessions, setSessions] = useState([]);
     const [routines, setRoutines] = useState([])
-    const [routinesSelected,setRoutinesSelected] = useState(0)
+    const [routinesSelected,setRoutinesSelected] = useState(-1)
 
     const selectRoutinesRef = useRef(null)
 

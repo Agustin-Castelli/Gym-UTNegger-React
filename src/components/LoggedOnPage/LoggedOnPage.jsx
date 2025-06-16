@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import ShiftsDropdown from "./ShiftsDropDown";
+import { jwtDecode } from "jwt-decode";
 
 const LoggedOnPage = () => {
 
@@ -8,7 +9,7 @@ const LoggedOnPage = () => {
 
         console.log(user);
 
-        const cards = [
+        let cards = [
         {
         title: "Clases",
         description: "Descubre nuestras disciplinas",
@@ -23,11 +24,13 @@ const LoggedOnPage = () => {
         },
         {
         title: "Contactanos",
-        description: `¿Algún problema, ${user.given_name}? ¡Contactanos!`,
+        description: `¿Algún problema, ${jwtDecode(localStorage.getItem("tokenGYM")).given_name}? ¡Contactanos!`,
         bgImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1470')",
         link: "/contact"
         }
     ];
+
+
 
     if (!user) {
             return(
@@ -37,9 +40,24 @@ const LoggedOnPage = () => {
             )
         }
 
+
+
+    if(user.role == "Trainer"){
+        cards = [...cards, 
+            {
+        title: "Crear Sesion",
+        description: "Crear Sesion",
+        bgImage: "url('https://img.freepik.com/foto-gratis/grupo-personas-haciendo-ejercicio-juntos-al-aire-libre_23-2151061445.jpg",
+        link: "/NewSession"
+        },
+        ]
+    }
+
+
+
     return(
         <>
-            <h3 className="text-white text-4xl flex justify-center font-bold mt-5">Bienvenido de nuevo, {user.given_name}!</h3>
+            <h3 className="text-white text-4xl flex justify-center font-bold mt-5">Bienvenido de nuevo, {jwtDecode(localStorage.getItem("tokenGYM")).given_name}!</h3>
 
             <div className="flex justify-center mx-36 my-10">
                 <ShiftsDropdown/>

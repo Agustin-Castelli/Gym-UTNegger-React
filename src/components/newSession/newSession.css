@@ -31,3 +31,7 @@ background-color: white;
 .div-selectRoutine-newSession option{
     color: black;
 }
+
+.rbc-btn-group{
+    display: none;
+}

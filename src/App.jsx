@@ -16,7 +16,7 @@ import ProtectedTrainer from './components/protected/protectedTrainer';
 import NewSession from './components/newSession/NewSession';
 
 function App() {
-
+ 
   
 
   const router = createBrowserRouter([
