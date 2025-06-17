@@ -5,7 +5,7 @@ import { jwtDecode } from "jwt-decode"
 
 const ProtectedTrainer = ({children}) => {
 
-    const {user} = useContext(userContext)
+    //const {user} = useContext(userContext)
     const token = localStorage.getItem('tokenGYM')
    // alert(jwtDecode(token).role)
 if( !token || jwtDecode(token).role != "Trainer") {
