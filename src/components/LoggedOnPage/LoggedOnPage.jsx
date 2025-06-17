@@ -50,6 +50,12 @@ const LoggedOnPage = () => {
         bgImage: "url('https://img.freepik.com/foto-gratis/grupo-personas-haciendo-ejercicio-juntos-al-aire-libre_23-2151061445.jpg",
         link: "/NewSession"
         },
+        {
+            title: "Ver Mis Rutinas",
+            description: "Observa tus rutinas",
+            bgImage: "url('https://www.shutterstock.com/image-photo/portrait-happy-male-gym-instructor-260nw-232353169.jpg",
+            link: "/viewRoutines"
+        }
         ]
     }
 

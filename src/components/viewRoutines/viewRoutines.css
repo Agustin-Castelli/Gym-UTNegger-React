@@ -1,0 +1,32 @@
+.cont-viewRoutines{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0;
+}
+
+.cont-viewRoutines-div{
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 5px 0;
+    max-width: 600px;
+}
+
+.cont-viewRoutines-div-dark{
+    color: orangered;
+    border-color: orangered;
+}
+
+.viewRoutines-h3{
+    align-self: center;
+    font-size: 20px;
+}
+
+.cont-viewRoutines-div div{
+    margin: 5px 0;
+}
