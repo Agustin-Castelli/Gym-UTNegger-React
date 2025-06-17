@@ -100,7 +100,9 @@ const NewSession = () => {
             )
             if (!res.ok)
                 throw new Error("Error Inesperado")
-            const mensaje = await res.text()
+            const json = await res.json()
+            console.log(json)
+            setSessions([...sessions,json])
             alert("Sesion logueada sastifactoriamente")
 
         } catch (error) {
@@ -119,7 +121,7 @@ const NewSession = () => {
                 setRoutinesSelected(Number(selectRoutinesRef.current.value))}} >
                 <option value={0} disabled selected>Selecciona una opcion</option>
                 <option value={-1} >Crear mi propia rutina</option>
-                {routines.map(x=><option value={x.id} >{x.name}</option>)}
+                {routines.map((x,i)=><option key={x.id+x.name+i} value={x.id} >{x.name}</option>)}
             </select>
         </div>
         

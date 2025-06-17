@@ -4,7 +4,7 @@ const ShiftsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="w-full px-4">
+    <div className="w-full px-4 min-w-xs">
       {/* Botón principal */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
