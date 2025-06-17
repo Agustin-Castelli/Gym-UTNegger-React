@@ -53,6 +53,17 @@ const LoggedOnPage = () => {
         ]
     }
 
+        if(user.role == "Trainer"){
+        cards = [...cards, 
+            {
+        title: "Cancelar Sesion",
+        description: "Cancelar Sesion",
+        bgImage: "url('https://deportedecontacto.com/wp-content/uploads/%C2%BFQue-significa-cuando-tiras-la-toalla-en-un-ring.jpeg.webp",
+        link: "/CancelSession"
+        },
+        ]
+    }
+
 
 
     return(
