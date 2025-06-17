@@ -55,20 +55,17 @@ const LoggedOnPage = () => {
             description: "Observa tus rutinas",
             bgImage: "url('https://www.shutterstock.com/image-photo/portrait-happy-male-gym-instructor-260nw-232353169.jpg",
             link: "/viewRoutines"
+        },
+        {
+            title: "Cancelar Sesion",
+            description: "",
+            bgImage: "url('https://deportedecontacto.com/wp-content/uploads/%C2%BFQue-significa-cuando-tiras-la-toalla-en-un-ring.jpeg.webp",
+            link: "/CancelSession"
         }
         ]
     }
 
-        if(user.role == "Trainer"){
-        cards = [...cards, 
-            {
-        title: "Cancelar Sesion",
-        description: "Cancelar Sesion",
-        bgImage: "url('https://deportedecontacto.com/wp-content/uploads/%C2%BFQue-significa-cuando-tiras-la-toalla-en-un-ring.jpeg.webp",
-        link: "/CancelSession"
-        },
-        ]
-    }
+
 
 
 

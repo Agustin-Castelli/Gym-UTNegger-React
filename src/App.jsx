@@ -14,7 +14,8 @@ import ModifyPass from './components/login/changePass/modifyPass/ModifyPass';
 import FormMail from './components/login/changePass/formMail/FormMail';
 import ProtectedTrainer from './components/protected/protectedTrainer';
 import NewSession from './components/newSession/NewSession';
-
+import CancelSession
+ from './components/CancelSession/CancelSession';
 function App() {
  
   
@@ -60,6 +61,10 @@ function App() {
         {
           path: "/NewSession",
           element: <ProtectedTrainer><NewSession/></ProtectedTrainer>
+        } ,      
+        {
+          path: "/CancelSession",
+          element: <ProtectedTrainer><CancelSession/></ProtectedTrainer>
         }
         
       ]
