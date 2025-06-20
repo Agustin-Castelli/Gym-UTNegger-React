@@ -51,7 +51,10 @@ const Register = () => {
         phoneRef.current.style.backgroundColor = "rgba(0, 0, 0, 0)";
     }
 
-
+    const validate = (e) => {
+        if (['-', 'e', "."].includes(e.key))
+            e.preventDefault()
+    }
 
     const handlerWeight = (e) => {
         console.log(e.target.value.length);
@@ -181,15 +184,15 @@ const Register = () => {
                     <div className="div-form-register">
                         <div className="datos-register">
                             <label htmlFor="phone">Teléfono</label>
-                            <input type="number" ref={phoneRef} value={phone} onChange={handlerPhone} min={0} id="phone" name="phone" placeholder="Ingrese su teléfono aqui" />
+                            <input type="number" ref={phoneRef} onKeyDown={validate} value={phone} onChange={handlerPhone} min={0} id="phone" name="phone" placeholder="Ingrese su teléfono aqui" />
                         </div>
                         <div className="datos-register">
                             <label htmlFor="address">Peso</label>
-                            <input type="number" ref={weightRef} value={weight} onChange={handlerWeight} min={0} id="weight" name="weight" placeholder="Ingrese su peso aqui" />
+                            <input type="number" ref={weightRef} onKeyDown={validate} value={weight} onChange={handlerWeight} min={0} id="weight" name="weight" placeholder="Ingrese su peso aqui" />
                         </div>
                         <div className="datos-register">
                             <label htmlFor="height">Altura</label>
-                            <input type="number" ref={heightRef} value={height} onChange={handlerHeight} min={0} id="height" name="height" placeholder="Ingrese su altura aqui" />
+                            <input type="number" ref={heightRef} onKeyDown={validate} value={height} onChange={handlerHeight} min={0} id="height" name="height" placeholder="Ingrese su altura aqui" />
                         </div>
                     </div>
                 </div>
