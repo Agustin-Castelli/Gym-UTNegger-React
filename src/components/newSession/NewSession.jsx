@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { jwtDecode } from "jwt-decode";
 import "./NewSession.css"
 import { modeContext } from "../../context/ModeContext";
+import InputExercise from "./InputsExercise/InputExercise";
 
 
 
@@ -19,7 +20,10 @@ const NewSession = () => {
     //const { user } = useContext(userContext);
     const [sessions, setSessions] = useState([]);
     const [routines, setRoutines] = useState([])
-    const [routinesSelected,setRoutinesSelected] = useState(-1)
+    const [routinesSelected, setRoutinesSelected] = useState(-1)
+    const [exercises, setExercises] = useState([])
+    const [lastId, setLastId] = useState(1)
+    const [newRoutineName, setNewRoutineName]= useState("")
 
     const selectRoutinesRef = useRef(null)
 
@@ -74,11 +78,67 @@ const NewSession = () => {
 
 
     const handleSelectSlot = async (slotInfo) => {
-        if (slotInfo.start in sessions || routinesSelected<0)
+        if (slotInfo.start in sessions || routinesSelected < 0)
             return;
         console.log('Día seleccionado:', slotInfo.start)
         console.log(routinesSelected)
+
+
         try {
+            let routine
+            if (routinesSelected == 0) {
+                
+                if(newRoutineName=="")
+                    throw new Error("Agrega un nombre a la rutina");
+                
+                if(exercises.length == 0)
+                    throw new Error("Agrega ejercicios");
+
+
+                for (let exe of exercises) 
+                    if (exe.name == "" || exe.reps == 0 || exe.sets == 0 || exe.restTime == 0)
+                        throw new Error("Hay campos vacios");
+
+                
+                
+
+                const newRoutine = await fetch(`${API_BASE_URL}/Routine/AddRange`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        id: 0,
+                        name: newRoutineName,
+                        isAvailable: true,
+                        exercises: exercises
+
+                    })
+                })
+
+                if(!newRoutine.ok)
+                    throw new Error("Error al crear la rutina")
+                routine = await newRoutine.json()
+                //setRoutinesSelected(routine.id)
+                console.log(routine)
+            }
+            console.log(JSON.stringify({
+                        sessionDate: slotInfo.start,
+                        trainerId: user.sub,
+                        routineId: routinesSelected==0?routine.id:routinesSelected,
+                        routineName: "",
+                        id: 0,
+                        sessionType: "MuscleBuildingClass",
+                        reservedPlaces: 0
+                    })); 
+
+
+
+
+
+
             const res = await fetch(`${API_BASE_URL}/GymSession`,
                 {
                     headers: {
@@ -90,19 +150,21 @@ const NewSession = () => {
                     body: JSON.stringify({
                         sessionDate: slotInfo.start,
                         trainerId: user.sub,
-                        routineId: routinesSelected,
-                        routineName: "aaaaaaaaaaaaaa",
+                        routineId: routinesSelected==0?routine.id:routinesSelected,
+                        routineName: "",
                         id: 0,
                         sessionType: "MuscleBuildingClass",
                         reservedPlaces: 0
                     })
                 }
             )
-            if (!res.ok)
-                throw new Error("Error Inesperado")
-            const json = await res.json()
+            if (!res.ok){
+                console.log(await res.text())
+                throw new Error("Error Inesperado")}
+            let json = await res.json()
+            json = json.routineName==null?{...json,routineName:newRoutineName}:json
             console.log(json)
-            setSessions([...sessions,json])
+            setSessions([...sessions, json])
             alert("Sesion logueada sastifactoriamente")
 
         } catch (error) {
@@ -112,34 +174,44 @@ const NewSession = () => {
     }
 
 
-    return <div className="conteiner-NewSession">
-        
-        <div className={`div-selectRoutine-newSession ${mode?"":"div-selectRoutine-newSession-light"}`}>
+    return <div className="conteiner-NewSession" onClick={() => console.log(exercises)}>
+
+        <div className={`div-selectRoutine-newSession ${mode ? "" : "div-selectRoutine-newSession-light"}`}>
             <p>selecciona tu rutina</p>
-            <select name="" id="" ref={selectRoutinesRef} onChange={()=>{
-                    console.log(selectRoutinesRef.current.value)
-                setRoutinesSelected(Number(selectRoutinesRef.current.value))}} >
-                <option value={0} disabled selected>Selecciona una opcion</option>
-                <option value={-1} >Crear mi propia rutina</option>
-                {routines.map((x,i)=><option key={x.id+x.name+i} value={x.id} >{x.name}</option>)}
+            <select name="" id="" ref={selectRoutinesRef} onChange={() => {
+                console.log(selectRoutinesRef.current.value)
+                setRoutinesSelected(Number(selectRoutinesRef.current.value))
+            }} >
+                <option value={-1} disabled selected>Selecciona una opcion</option>
+                <option value={0} >Crear mi propia rutina</option>
+                {routines.map((x, i) => <option key={x.id + x.name + i} value={x.id} >{x.name}</option>)}
             </select>
         </div>
-        
+
+        {routinesSelected == 0 ?
+            <div className={`Divs-Exercises ${mode ? "Divs-Exercises-dark" : ""}`}>
+                <div><label htmlFor="">Nombre de la rutina: </label>
+                <input type="text" className={`newRoutineName ${mode ? "newRoutineName-dark" : ""}`} value={newRoutineName} onChange={(e)=>{setNewRoutineName(e.target.value)}} /></div>
+                {exercises.map(x => <InputExercise id={x.id} key={x.id} exercises={exercises} setExercises={setExercises} />)}
+                <input type="button" className={`add-exercise-button`} value="Agregar Ejercicio" onClick={() => { setExercises([...exercises, { id: lastId, exercise: "", sets: 0, rest: 0 }]); setLastId(lastId + 1) }} />
+            </div>
+            : <></>}
+
         <Calendar className="newSession-calendar"
-        localizer={localizer}
-        events={sessions.map((x) => (
-            {
-                title: x.routineName,
-                start: x.sessionDate,
-                end: x.sessionDate,
-                id: x.id
-            }))}
-        selectable
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500 }}
-        onSelectSlot={handleSelectSlot}
-    /></div>
+            localizer={localizer}
+            events={sessions.map((x) => (
+                {
+                    title: x.routineName,
+                    start: x.sessionDate,
+                    end: x.sessionDate,
+                    id: x.id
+                }))}
+            selectable
+            startAccessor="start"
+            endAccessor="end"
+            style={{ height: 500 }}
+            onSelectSlot={handleSelectSlot}
+        /></div>
 
 
 }

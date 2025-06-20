@@ -21,11 +21,12 @@ const ViewRoutines = () => {
             })
             .then((data)=>{
                 setRoutines(data)
+                console.log(data)
             })
             .catch((e)=>alert(e))
     }, [])
     return <div className="cont-viewRoutines">
-        {routines.map(x=><DivViewRoutines name={x.name} exercises={x.exercises}/>)}  
+        {routines.map(x=><DivViewRoutines key={x.id} name={x.name} exercises={x.exercises}/>)}  
     </div>
 }
 export default ViewRoutines

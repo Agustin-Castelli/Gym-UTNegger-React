@@ -1,0 +1,15 @@
+.cont-InputExercise{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.cont-InputExercise input{
+    border: 2px solid black;
+    border-radius: 30px;
+    padding-left: 5px;
+}
+
+.Divs-Exercises-dark input{
+border-color:orangered;
+}
