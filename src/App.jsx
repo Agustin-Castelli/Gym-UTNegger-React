@@ -16,6 +16,8 @@ import ProtectedTrainer from './components/protected/protectedTrainer';
 import NewSession from './components/newSession/NewSession';
 import CancelSession from './components/CancelSession/CancelSession';
 import ViewRoutines from './components/viewRoutines/ViewRoutines';
+import SobreNosotros from './components/SobreNosotros/sobreNosotros.jsx';
+
 function App() {
  
   
@@ -69,8 +71,12 @@ function App() {
         {
           path: "/viewRoutines",
           element: <ProtectedTrainer><ViewRoutines/></ProtectedTrainer>
+        },
+        {
+          path: "/sobre-nosotros",
+          element: <SobreNosotros />,
         }
-        
+
       ]
     },
 
