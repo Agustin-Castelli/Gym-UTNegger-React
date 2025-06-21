@@ -99,7 +99,7 @@ export default function TurnosGym() {
             localizer={localizer}
             events={sessions.map((x) => (
               {
-                title: x.routineName,
+                title: x.sessionType,
                 start: x.sessionDate,
                 end: x.sessionDate,
                 id: x.id

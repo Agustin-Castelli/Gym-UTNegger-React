@@ -26,6 +26,7 @@ const NewSession = () => {
     const [newRoutineName, setNewRoutineName]= useState("")
 
     const selectRoutinesRef = useRef(null)
+    const selectSessionTypeRef = useRef(null)
 
     const { user } = useContext(userContext)
     const { mode } = useContext(modeContext)
@@ -130,7 +131,7 @@ const NewSession = () => {
                         routineId: routinesSelected==0?routine.id:routinesSelected,
                         routineName: "",
                         id: 0,
-                        sessionType: "MuscleBuildingClass",
+                        sessionType: selectSessionTypeRef.current.value,
                         reservedPlaces: 0
                     })); 
 
@@ -153,7 +154,7 @@ const NewSession = () => {
                         routineId: routinesSelected==0?routine.id:routinesSelected,
                         routineName: "",
                         id: 0,
-                        sessionType: "MuscleBuildingClass",
+                        sessionType: selectSessionTypeRef.current.value,
                         reservedPlaces: 0
                     })
                 }
@@ -177,7 +178,14 @@ const NewSession = () => {
     return <div className="conteiner-NewSession" onClick={() => console.log(exercises)}>
 
         <div className={`div-selectRoutine-newSession ${mode ? "" : "div-selectRoutine-newSession-light"}`}>
-            <p>selecciona tu rutina</p>
+            <p> <u>Selecciona el tipo de clase</u> </p>
+            <select ref={selectSessionTypeRef} name="" id="selectType">
+                <option value="MuscleBuildingClass">MuscleBuildingClass</option>
+                <option value="YogaSession">YogaSession</option>
+                <option value="BoxingSession">BoxingSession</option>
+                <option value="HighIntensityCircuit">HighIntensityCircuit</option>
+            </select>
+            <p><u>Selecciona tu rutina </u></p>
             <select name="" id="" ref={selectRoutinesRef} onChange={() => {
                 console.log(selectRoutinesRef.current.value)
                 setRoutinesSelected(Number(selectRoutinesRef.current.value))
@@ -201,7 +209,7 @@ const NewSession = () => {
             localizer={localizer}
             events={sessions.map((x) => (
                 {
-                    title: x.routineName,
+                    title: x.sessionType,
                     start: x.sessionDate,
                     end: x.sessionDate,
                     id: x.id

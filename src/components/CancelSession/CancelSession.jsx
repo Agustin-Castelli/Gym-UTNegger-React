@@ -58,7 +58,7 @@ const CancelSession = () => {
   };
 
   const events = sessions.map((x) => ({
-    title: `${x.routineName}`,
+    title: `${x.sessionType}`,
     start: x.sessionDate,
     end: x.sessionDate,
     id: x.id,
