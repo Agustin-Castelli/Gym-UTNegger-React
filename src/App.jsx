@@ -16,9 +16,12 @@ import ProtectedTrainer from './components/protected/protectedTrainer';
 import NewSession from './components/newSession/NewSession';
 import CancelSession from './components/CancelSession/CancelSession';
 import ViewRoutines from './components/viewRoutines/ViewRoutines';
+import ProtectedAdmin from './components/protected/ProtectedAdmin';
+import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
+import RegisterTrainer from './components/registerTrainer/RegisterTrainer';
 function App() {
- 
-  
+
+
 
   const router = createBrowserRouter([
     {
@@ -51,26 +54,34 @@ function App() {
           element: <Protected><LoggedOnPage /></Protected>
         },
         {
-          path:"/FormMail",
-          element: <FormMail/>
+          path: "/FormMail",
+          element: <FormMail />
         },
         {
           path: "/modifyPass",
-          element: <ModifyPass/>
+          element: <ModifyPass />
         },
         {
           path: "/NewSession",
-          element: <ProtectedTrainer><NewSession/></ProtectedTrainer>
-        } ,      
+          element: <ProtectedTrainer><NewSession /></ProtectedTrainer>
+        },
         {
           path: "/CancelSession",
-          element: <ProtectedTrainer><CancelSession/></ProtectedTrainer>
+          element: <ProtectedTrainer><CancelSession /></ProtectedTrainer>
         },
         {
           path: "/viewRoutines",
-          element: <ProtectedTrainer><ViewRoutines/></ProtectedTrainer>
+          element: <ProtectedTrainer><ViewRoutines /></ProtectedTrainer>
+        },
+        {
+          path: "/registerAdmin",
+          element: <ProtectedAdmin><RegisterAdmin /></ProtectedAdmin>
+        },
+        {
+          path: "/registerTrainer",
+          element: <ProtectedAdmin><RegisterTrainer/></ProtectedAdmin>
         }
-        
+
       ]
     },
 
@@ -82,7 +93,7 @@ function App() {
 
   ])
 
-  return  <UserContextProvider> <ModeContextProvider>
+  return <UserContextProvider> <ModeContextProvider>
     <RouterProvider router={router} />
   </ModeContextProvider> </UserContextProvider>
 }
