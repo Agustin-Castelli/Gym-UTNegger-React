@@ -19,6 +19,8 @@ import ViewRoutines from './components/viewRoutines/ViewRoutines';
 import ProtectedAdmin from './components/protected/ProtectedAdmin';
 import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
 import RegisterTrainer from './components/registerTrainer/RegisterTrainer';
+import DisableUser from './components/disableUser/DisableUser';
+import RestoreUser from './components/restoreUser/RestoreUser';
 function App() {
 
 
@@ -79,7 +81,15 @@ function App() {
         },
         {
           path: "/registerTrainer",
-          element: <ProtectedAdmin><RegisterTrainer/></ProtectedAdmin>
+          element: <ProtectedAdmin><RegisterTrainer /></ProtectedAdmin>
+        },
+        {
+          path: "/disableUser",
+          element: <ProtectedAdmin><DisableUser /></ProtectedAdmin>
+        },
+        {
+          path: "/restoreUser",
+          element: <ProtectedAdmin><RestoreUser /></ProtectedAdmin>
         }
 
       ]
