@@ -21,6 +21,9 @@ import RegisterAdmin from './components/registerAdmin/RegisterAdmin';
 import RegisterTrainer from './components/registerTrainer/RegisterTrainer';
 import DisableUser from './components/disableUser/DisableUser';
 import RestoreUser from './components/restoreUser/RestoreUser';
+import SobreNosotros from './components/SobreNosotros/sobreNosotros.jsx';
+
+
 function App() {
 
 
@@ -90,7 +93,14 @@ function App() {
         {
           path: "/restoreUser",
           element: <ProtectedAdmin><RestoreUser /></ProtectedAdmin>
+        },
+        {
+
+          path: "/sobre-nosotros",
+          element: <SobreNosotros />
         }
+
+
 
       ]
     },
