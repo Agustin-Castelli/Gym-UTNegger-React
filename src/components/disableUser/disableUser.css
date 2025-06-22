@@ -1,0 +1,42 @@
+.div-disableUser{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+}
+
+.div-disableUser input{
+    border: 2px solid black;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+
+.div-de-users-disableUser{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin-bottom: 10px;
+}
+
+.users-disableUser{
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+border: 2px solid black;
+padding: 10px;
+border-radius: 30px;
+}
+
+.users-disableUser-dark{
+    border-color: orangered;
+    color: orangered;
+}
+
+.users-disableUser-dark input{
+    border-color: orangered;
+}
