@@ -1,20 +1,35 @@
 import { useNavigate } from "react-router-dom";
 import logo from "../../../public/logo-utnegger.jpg"
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { modeContext } from "../../context/ModeContext";
 import OscureButton from "../oscureButton/oscureButton";
 import { userContext } from "../../context/userContext";
-
+//import ReactDOM from 'react-dom/client';
 const Header = () => {
 
   const navigate = useNavigate()
 
-  const { user } = useContext(userContext);
+  const { user,setUser } = useContext(userContext);
 
   const {mode} = useContext(modeContext)
 
+
+ const [refreshHeader,setRefreshHeader] = useState(false)
+
+  const cerrarSesion = ()=>{
+    
+    
+    setRefreshHeader(!refreshHeader)
+    console.log(user)
+    localStorage.removeItem("tokenGYM")
+    setTimeout(()=>{setUser({})},5000)
+    //ReactDOM.createRoot().render()
+    //root.render(nav)
+    navigate(0)
+  }
+
     return (
-      <nav className="w-full">
+      <nav className="w-full" refresh={refreshHeader}>
         <OscureButton/>
         {/* Parte superior con línea naranja */}
         <div className={`bg-${mode?"black":"white"} text-${mode?"white":"black"} py-4 flex items-center justify-center relative`}>
@@ -71,7 +86,7 @@ const Header = () => {
           </ul>
           
           {/* Botón condicional */}
-          {user ? (
+          {user ? (<div className="flex gap-5">
             <button 
               className="flex items-center justify-end w-10 h-10 rounded-full bg-orange-600 text-white hover:w-32 hover:justify-start transition-all duration-300 overflow-hidden group"
               onClick={() => navigate("/loggedOn")}
@@ -91,6 +106,11 @@ const Header = () => {
                 <circle cx="12" cy="7" r="4"></circle>
               </svg>
             </button>
+            <button type="button" className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={cerrarSesion}>
+              Cerrar Sesión
+            </button>
+            </div>
+            
           ) : (
             <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={()=>{navigate("/login")}}>
             Login
