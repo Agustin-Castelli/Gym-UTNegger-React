@@ -14,7 +14,21 @@ const HeaderPhone = () => {
     const [visible, setVisible] = useState(false)
 
     const { mode } = useContext(modeContext)
-    const { user }  = useContext(userContext)
+    const { user } = useContext(userContext)
+
+
+    const cerrarSesion = ()=>{
+    
+    
+    //setRefreshHeader(!refreshHeader)
+    console.log(user)
+    localStorage.removeItem("tokenGYM")
+    setTimeout(()=>{setUser({})},5000)
+    //ReactDOM.createRoot().render()
+    //root.render(nav)
+    navigate(0)
+  }
+
     return (
         <div className="cont-header-phone">
             <div className={`bg-${mode ? "black" : "white"} text-${mode ? "white" : "black"} border-b-4 py-4 flex items-center justify-evenly relative`}>
@@ -67,25 +81,31 @@ const HeaderPhone = () => {
                         </li>
                         <li> {/* Botón condicional */}
                             {user ? (
-                                <button
-                                    className="flex items-center justify-end w-10 h-10 rounded-full bg-orange-600 text-white hover:w-32 hover:justify-start transition-all duration-300 overflow-hidden group"
-                                    onClick={() => navigate("/loggedOn")}
-                                >
-                                    <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-2 pl-5">
-                                        Mi Perfil
-                                    </span>
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        className="w-5 h-5 absolute mx-2.5 group-hover:relative group-hover:mr-0 group-hover:ml-2"
+                                <div className="flex items-center justify-center flex-col gap-5" >
+                                    <button
+                                        className="flex items-center justify-end w-10 h-10 rounded-full bg-orange-600 text-white hover:w-32 hover:justify-start transition-all duration-300 overflow-hidden group"
+                                        onClick={() => navigate("/loggedOn")}
                                     >
-                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="12" cy="7" r="4"></circle>
-                                    </svg>
-                                </button>
+                                        <span className="whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 mr-2 pl-5">
+                                            Mi Perfil
+                                        </span>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            className="w-5 h-5 absolute mx-2.5 group-hover:relative group-hover:mr-0 group-hover:ml-2"
+                                        >
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="12" cy="7" r="4"></circle>
+                                        </svg>
+                                    </button>
+                                    <button type="button" className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={cerrarSesion}>
+                                        Cerrar Sesión
+                                    </button>
+                                </div>
+
                             ) : (
                                 <button className="bg-orange-600 text-white px-5 py-2 rounded font-bold hover:bg-orange-700 transition-colors duration-300" onClick={() => { navigate("/login") }}>
                                     Login

@@ -55,7 +55,7 @@ const Dashboard = () => {
           </button>
           
           <a 
-            href="https://wa.me/[TU_NUMERO]" 
+            href="https://wa.me/3416489983" 
             className="bg-green-500 hover:bg-green-600 text-white text-2xl font-medium py-4 px-12 rounded-full flex items-center gap-2 transform transition-transform duration-300 hover:scale-105 shadow-lg"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">

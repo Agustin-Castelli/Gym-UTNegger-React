@@ -2,11 +2,11 @@ import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import ShiftsDropdown from "./ShiftsDropDown";
 import { jwtDecode } from "jwt-decode";
-
+import { modeContext } from "../../context/ModeContext";
 const LoggedOnPage = () => {
 
-    const { user } = useContext(userContext);
-
+    const user = jwtDecode(localStorage.getItem("tokenGYM"));
+    const {mode} = useContext(modeContext)
     console.log(user);
 
     let cards = [
@@ -24,11 +24,20 @@ const LoggedOnPage = () => {
         },
         {
             title: "Contactanos",
-            description: `¿Algún problema, ${jwtDecode(localStorage.getItem("tokenGYM")).given_name}? ¡Contactanos!`,
+            description: `¿Algún problema, ${user.given_name}? ¡Contactanos!`,
             bgImage: "url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=1470')",
             link: "/contact"
         }
     ];
+
+        if(user.role == "Client")
+                cards =[...cards,
+            {
+                title: "Modificar Cuenta",
+                description: "",
+                bgImage: "url('https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png",
+                link: "/actualizar-cliente"
+            }]
 
 
 
@@ -65,6 +74,15 @@ const LoggedOnPage = () => {
         ]
     }
 
+    if(user.role == "Trainer")
+                cards =[...cards,
+            {
+                title: "Modificar Cuenta",
+                description: "",
+                bgImage: "url('https://static.vecteezy.com/system/resources/previews/019/879/186/non_2x/user-icon-on-transparent-background-free-png.png",
+                link: "/actualizar-entrenador"
+            }]
+
 
     if (user.role == "Admin" || user.role == "SuperAdmin")
         cards = [
@@ -80,14 +98,15 @@ const LoggedOnPage = () => {
                 description: "",
                 bgImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtkUOs-TPKLgMK-1M1vK208dnD-44r18OtA&s",
                 link: "/registerTrainer"
-            }]
+            },]
 
+            
 
 
 
     return (
         <>
-            <h3 className="text-white text-4xl flex justify-center font-bold mt-5">Bienvenido de nuevo, {jwtDecode(localStorage.getItem("tokenGYM")).given_name}!</h3>
+            <h3 className={`${mode?"text-white":"text-black"} text-4xl flex justify-center font-bold mt-5`}>Bienvenido de nuevo, {user.given_name}!</h3>
 
             <div className="flex justify-center mx-36 my-10">
                 <ShiftsDropdown />

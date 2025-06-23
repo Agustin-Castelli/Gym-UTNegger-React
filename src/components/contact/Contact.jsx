@@ -5,14 +5,18 @@ import { API_BASE_URL } from "../../api"
 import { Link } from "react-router-dom"
 const Contact = () => {
 
-    const [nameSubname, setNameSubname] = useState("")
+    const [name, setName] = useState("")
+    const [subName, setSubName] = useState("")
     const [address, setAddress] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [message, setMessage] = useState("")
 
-    const handlerNameSubnameChange = (e) => {
-        setNameSubname(e.target.value)
+    const handlerNameChange = (e) => {
+        setName(e.target.value)
+    }
+        const handlerSubnameChange = (e) => {
+        setSubName(e.target.value)
     }
     const handlerAddressChange = (e) => {
         setAddress(e.target.value)
@@ -30,16 +34,17 @@ const Contact = () => {
     }
 
     const handlerSendMessage = async () => {
-        console.log(nameSubname, address, email, phone, message)
+        console.log(name,subName, address, email, phone, message)
         try {
-            const response = await fetch(`${API_BASE_URL}/`, {
+            const response = await fetch(`${API_BASE_URL}/Admin/enviar-consulta`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    nameSubname,
-                    address,
+                    name,
+                    surname:subName,
+                    email:address,
                     email,
                     phone,
                     message
@@ -49,13 +54,14 @@ const Contact = () => {
             if (!response.ok)
                 throw new Error("Error inesperado")
 
-            const data = await response.json()
+            const data = await response.text()
             console.log(data)
+            alert(data)
         }
 
         catch (e) {
-            console.error(e)
-            alert("Error al enviar el mensaje")
+            console.log(e)
+            alert(e)
         }
 
     }
@@ -68,18 +74,21 @@ const Contact = () => {
                     <p>Podés escribirnos a nuestro número de WhatsApp haciendo click sobre el logo</p>
                     <a href="https://wa.me/3416489983"><img className="logo-contact" src={logoWSP}  alt="logo" /></a>
                     <p>Caso contrario podés llamarnos al siguiente número </p>
-                    <p>00000000000</p>
+                    <p>+54 9 341-648-9983</p>
                     <p>También si querés hacer alguna consulta particular podés mandarnos un correo </p>
                 </div>
                 <div className="div-contact">
                     <div className="div-div-contact">
                         <div>
-                            <div><label htmlFor="">Nombre y apellido</label><input type="text" value={nameSubname} onChange={handlerNameSubnameChange} /></div>
+                            <div><label htmlFor="">Nombre</label><input type="text" value={name} onChange={handlerNameChange} /></div>
                             <div><label htmlFor="">Dirección</label><input type="text" value={address} onChange={handlerAddressChange} /></div>
+                            <div><label htmlFor="">Teléfono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
                         </div>
                         <div>
+                            <div><label htmlFor="">Apellido</label><input type="text" value={subName} onChange={handlerSubnameChange} /></div>
                             <div><label htmlFor="">Correo</label><input type="email" value={email} onChange={handlerEmailChange} /></div>
-                            <div><label htmlFor="">Teléfono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
+                            
+                            
                         </div>
                     </div>
 
