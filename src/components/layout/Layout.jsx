@@ -16,11 +16,11 @@ const Layout = () => {
 
       
 
-      <MediaQuery minWidth={750}>
+      <MediaQuery minWidth={781}>
       <Header/>
       </MediaQuery>
 
-      <MediaQuery maxWidth={750}>
+      <MediaQuery maxWidth={780}>
         <HeaderPhone/>
       </MediaQuery>
 
