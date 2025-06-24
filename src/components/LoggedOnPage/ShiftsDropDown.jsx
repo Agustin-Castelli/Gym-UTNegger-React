@@ -8,6 +8,7 @@ const ShiftsDropdown = () => {
   const user = jwtDecode(localStorage.getItem("tokenGYM"))
 
   useEffect(()=>{
+    if(user.role == "Client"){
     fetch(`${API_BASE_URL}/Client/GetMyClientSessions/${user.sub}`, {
                 headers: {
                     "Content-Type": "application/json",
@@ -27,7 +28,30 @@ const ShiftsDropdown = () => {
                 })
                 .catch((e) => {
                     alert(e)
+                })}
+    if (user.role == "Trainer"){
+      fetch(`${API_BASE_URL}/GymSession/GetMyTrainerSessions/${user.sub}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+                }
+            })
+                .then((res) => {
+                    if (!res.ok)
+                        throw new Error("Error inesperado")
+                    return res.json()
                 })
+                .then((data) => {
+                    setSessions(data)
+                    
+                    console.log(data)
+    
+                })
+                .catch((e) => {
+                    alert(e)
+                    alert("Trainer")
+                })}
   },[])
 
   return (
@@ -53,9 +77,10 @@ const ShiftsDropdown = () => {
 
       {/* Contenido desplegable */}
       <div 
-        className={`bg-gray-700 rounded-b-lg overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}
+      style={{overflow:"auto"}}
+        className={`overflow-auto bg-gray-700 rounded-b-lg overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96' : 'max-h-0'}`}
       >
-        <div className="p-6">
+        <div style={{overflow:"auto"}} className="p-6">
           {/* Ejemplo de turno 1 */}
           {/* <div className="mb-4 p-4 bg-gray-600 rounded-lg">
             <div className="flex justify-between items-center">
