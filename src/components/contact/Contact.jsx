@@ -7,7 +7,7 @@ const Contact = () => {
 
     const [name, setName] = useState("")
     const [subName, setSubName] = useState("")
-    const [address, setAddress] = useState("")
+    //const [address, setAddress] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [message, setMessage] = useState("")
@@ -18,9 +18,9 @@ const Contact = () => {
         const handlerSubnameChange = (e) => {
         setSubName(e.target.value)
     }
-    const handlerAddressChange = (e) => {
-        setAddress(e.target.value)
-    }
+    // const handlerAddressChange = (e) => {
+    //     setAddress(e.target.value)
+    // }
     const handlerEmailChange = (e) => {
         setEmail(e.target.value)
     }
@@ -34,7 +34,7 @@ const Contact = () => {
     }
 
     const handlerSendMessage = async () => {
-        console.log(name,subName, address, email, phone, message)
+        console.log(name,subName, email, phone, message)
         try {
             const response = await fetch(`${API_BASE_URL}/Admin/enviar-consulta`, {
                 method: "POST",
@@ -42,12 +42,11 @@ const Contact = () => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    name,
+                    name:name,
                     surname:subName,
-                    email:address,
-                    email,
-                    phone,
-                    message
+                    email:email,
+                    phone:phone,
+                    message:message
                 })
             })
 
@@ -81,7 +80,7 @@ const Contact = () => {
                     <div className="div-div-contact">
                         <div>
                             <div><label htmlFor="">Nombre</label><input type="text" value={name} onChange={handlerNameChange} /></div>
-                            <div><label htmlFor="">Dirección</label><input type="text" value={address} onChange={handlerAddressChange} /></div>
+                            {/* <div><label htmlFor="">Dirección</label><input type="text" value={address} onChange={handlerAddressChange} /></div> */}
                             <div><label htmlFor="">Teléfono</label><input type="number" min="0" value={phone} onChange={handlerPhoneChange} /></div>
                         </div>
                         <div>
