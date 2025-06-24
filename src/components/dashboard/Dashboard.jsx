@@ -11,7 +11,7 @@ const Dashboard = () => {
       title: "Clases",
       description: "Descubre nuestras disciplinas",
       bgImage: "url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470')",
-      link: "/classes"
+      link: "/clases"
     },
     {
       title: "Turnos",

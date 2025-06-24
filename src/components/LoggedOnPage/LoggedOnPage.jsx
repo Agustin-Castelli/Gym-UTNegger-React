@@ -99,7 +99,20 @@ const LoggedOnPage = () => {
                 description: "",
                 bgImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtkUOs-TPKLgMK-1M1vK208dnD-44r18OtA&s",
                 link: "/registerTrainer"
-            },]
+            },
+            {
+                title: "Eliminar usuario",
+                description: "",
+                bgImage: "url('https://cdn-icons-png.flaticon.com/512/9386/9386854.png",
+                link: "/disableUser"
+            },
+            {
+                title: "Restaurar usuario",
+                description: "",
+                bgImage: "url('https://cdn-icons-png.flaticon.com/512/760/760737.png",
+                link: "/restoreUser"
+            },
+        ]
 
             
 

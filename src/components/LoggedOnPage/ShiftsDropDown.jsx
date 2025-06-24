@@ -24,7 +24,6 @@ const ShiftsDropdown = () => {
                 .then((data) => {
                     setSessions(data)
                     console.log(data)
-    
                 })
                 .catch((e) => {
                     alert(e)
@@ -44,7 +43,6 @@ const ShiftsDropdown = () => {
                 })
                 .then((data) => {
                     setSessions(data)
-                    
                     console.log(data)
     
                 })
@@ -53,6 +51,33 @@ const ShiftsDropdown = () => {
                     alert("Trainer")
                 })}
   },[])
+
+  const eliminarTurno = async (id) => {
+      try {
+        const res = await fetch(`${API_BASE_URL}/ClientGymSession/UnregisterToGymSession/${user.sub}/${id}`, {
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+          },
+          method: "DELETE"
+        }
+        )
+  
+  
+        if (!res.ok) {
+          const errorData = await res.text();
+          console.log(errorData.match(/: (.+?)\r?\n/))
+          throw new Error(errorData.match(/: (.+?)\r?\n/)[1])
+        }
+        const mensaje = await res.text()
+  
+        alert(mensaje)
+  
+      } catch (error) {
+        alert("Error: " + error.message)
+      }
+    }
 
   return (
     <div className="w-full px-4 min-w-xs">
@@ -94,7 +119,10 @@ const ShiftsDropdown = () => {
           {sessions.map(x=><div className="mb-4 p-4 bg-gray-600 rounded-lg">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-semibold text-white">{x.sessionType}</h3>
-              <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Confirmado</span>
+              <div>
+                <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Confirmado</span>
+                <button className='ml-1.5'><span className="bg-red-600 text-white px-3 py-1 rounded-full text-sm" onClick={() => {eliminarTurno(x.id); console.log(x.id)}}>Eliminar turno</span></button>
+              </div>
             </div>
             <p className="text-gray-300 mt-2">{x.sessionDate.substring(0,10)}</p>
             {/* <p className="text-gray-300">Instructor: María López</p> */}
