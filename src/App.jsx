@@ -24,6 +24,7 @@ import RestoreUser from './components/restoreUser/RestoreUser';
 import SobreNosotros from './components/SobreNosotros/sobreNosotros.jsx';
 import UpdateUser from './components/updateUser/UpdateUser.jsx';
 import UpdateTrainer from './components/updateTrainer/UpdateTrainer.jsx';
+import Clases from './components/clases/clases.jsx';
 
 
 function App() {
@@ -108,6 +109,10 @@ function App() {
         {
           path:"/actualizar-entrenador",
           element:<ProtectedTrainer><UpdateTrainer/></ProtectedTrainer>
+        },
+        {
+          path:"/clases",
+          element:<Clases/>
         }
 
 

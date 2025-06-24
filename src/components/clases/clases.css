@@ -1,0 +1,34 @@
+.cont-clases{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.cont-clases h2{
+    font-size: 20px;
+}
+
+
+.div-clases{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid ;
+    width: 80%;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.cont-clases div p{
+width: 70%;
+text-align: center;
+}
+
+.cont-clases-dark{
+    color: orangered;
+    border-color: orangered;
+}

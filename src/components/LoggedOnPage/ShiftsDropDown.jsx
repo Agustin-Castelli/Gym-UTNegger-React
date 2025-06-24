@@ -1,7 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../../api';
+import { jwtDecode } from 'jwt-decode';
 
 const ShiftsDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sessions,setSessions] = useState([])
+  const user = jwtDecode(localStorage.getItem("tokenGYM"))
+
+  useEffect(()=>{
+    fetch(`${API_BASE_URL}/Client/GetMyClientSessions/${user.sub}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("tokenGYM")}`
+                }
+            })
+                .then((res) => {
+                    if (!res.ok)
+                        throw new Error("Error inesperado")
+                    return res.json()
+                })
+                .then((data) => {
+                    setSessions(data)
+                    console.log(data)
+    
+                })
+                .catch((e) => {
+                    alert(e)
+                })
+  },[])
 
   return (
     <div className="w-full px-4 min-w-xs">
@@ -30,24 +57,33 @@ const ShiftsDropdown = () => {
       >
         <div className="p-6">
           {/* Ejemplo de turno 1 */}
-          <div className="mb-4 p-4 bg-gray-600 rounded-lg">
+          {/* <div className="mb-4 p-4 bg-gray-600 rounded-lg">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-semibold text-white">Yoga Matutino</h3>
               <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Confirmado</span>
             </div>
             <p className="text-gray-300 mt-2">Lunes 15 de Mayo, 8:00 - 9:00 AM</p>
             <p className="text-gray-300">Instructor: María López</p>
-          </div>
+          </div> */}
+
+          {sessions.map(x=><div className="mb-4 p-4 bg-gray-600 rounded-lg">
+            <div className="flex justify-between items-center">
+              <h3 className="text-xl font-semibold text-white">{x.sessionType}</h3>
+              <span className="bg-orange-600 text-white px-3 py-1 rounded-full text-sm">Confirmado</span>
+            </div>
+            <p className="text-gray-300 mt-2">{x.sessionDate.substring(0,10)}</p>
+            {/* <p className="text-gray-300">Instructor: María López</p> */}
+          </div>)}
 
           {/* Ejemplo de turno 2 */}
-          <div className="mb-4 p-4 bg-gray-600 rounded-lg">
+          {/* <div className="mb-4 p-4 bg-gray-600 rounded-lg">
             <div className="flex justify-between items-center">
               <h3 className="text-xl font-semibold text-white">Boxeo Avanzado</h3>
               <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-sm">Próxima clase</span>
             </div>
             <p className="text-gray-300 mt-2">Miércoles 17 de Mayo, 6:00 - 7:30 PM</p>
             <p className="text-gray-300">Instructor: Carlos Méndez</p>
-          </div>
+          </div> */}
 
           {/* Mensaje cuando no hay turnos (opcional) */}
           {/* <div className="text-center py-8 text-gray-400">

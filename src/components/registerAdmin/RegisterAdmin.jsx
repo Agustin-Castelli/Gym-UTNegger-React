@@ -98,14 +98,7 @@ const RegisterAdmin = () => {
             error = true;
             phoneRef.current.style.backgroundColor = colorError;
         }
-        if (!weight) {
-            error = true;
-            weightRef.current.style.backgroundColor = colorError;
-        }
-        if (!height) {
-            error = true;
-            heightRef.current.style.backgroundColor = colorError;
-        }
+        
         if (error) {
             alert("Por favor, completa todos los campos.");
             return;

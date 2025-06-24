@@ -15,7 +15,7 @@ const LoggedOnPage = () => {
             title: "Clases",
             description: "Descubre nuestras disciplinas",
             bgImage: "url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1470')",
-            link: "/classes"
+            link: "/clases"
         },
         {
             title: "Turnos",
@@ -113,9 +113,9 @@ const LoggedOnPage = () => {
                 <ShiftsDropdown />
             </div>
 
-            <div className="my-10">
+            {/* <div className="my-10">
                 <UserProfileSection/>
-            </div>
+            </div> */}
 
             {/* Sección menú de opciones con tarjetas interactivas */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-black">
