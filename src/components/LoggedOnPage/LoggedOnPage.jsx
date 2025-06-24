@@ -3,6 +3,7 @@ import { userContext } from "../../context/userContext";
 import ShiftsDropdown from "./ShiftsDropDown";
 import { jwtDecode } from "jwt-decode";
 import { modeContext } from "../../context/ModeContext";
+import UserProfileSection from "./UserProfileSection";
 const LoggedOnPage = () => {
 
     const user = jwtDecode(localStorage.getItem("tokenGYM"));
@@ -110,6 +111,10 @@ const LoggedOnPage = () => {
 
             <div className="flex justify-center mx-36 my-10">
                 <ShiftsDropdown />
+            </div>
+
+            <div className="my-10">
+                <UserProfileSection/>
             </div>
 
             {/* Sección menú de opciones con tarjetas interactivas */}
