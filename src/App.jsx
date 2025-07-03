@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Dashboard from './components/dashboard/Dashboard'
-import Layout from './components/layout/layout';
+import Layout from './components/layout/Layout';
 import Login from './components/login/Login'
 import Contact from './components/contact/Contact';
 import ShiftsPage from "./components/shiftsPage/ShiftsPage"
@@ -34,7 +34,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: <Layout/>,
       children: [
         {
           path: "/",

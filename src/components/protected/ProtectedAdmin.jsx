@@ -8,7 +8,8 @@ const ProtectedAdmin = ({children}) => {
     //const {user} = useContext(userContext)
     const token = localStorage.getItem('tokenGYM')
    // alert(jwtDecode(token).role)
-if( !token || (jwtDecode(token).role != "Admin" && jwtDecode(token).role !="SuperAdmin")) {
+   const userRole = jwtDecode(token).role
+if( !token || userRole != "Admin") {
     return <Navigate to="/login" />
 }
 return children
