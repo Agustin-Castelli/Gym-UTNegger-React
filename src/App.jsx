@@ -41,6 +41,10 @@ function App() {
           element: <Dashboard />,
         },
         {
+          path:"*",
+          element: <Dashboard />,
+        },
+        {
           path: "/login",
           element: <Login />,
 
@@ -120,10 +124,7 @@ function App() {
       ]
     },
 
-    {
-      path: "/",
-      element: <p>dash</p>
-    }
+
 
 
   ])
